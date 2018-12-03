@@ -186,8 +186,7 @@ def count_sines_from(m, n):
        inclusive, whose sine is less than 0.5.
     Side effects:   None.
     Examples:
-    Since:  sine(-5) is about 0.96
-            sine(-4) is about 0.76
+    Since:  sine(-4) is about 0.76
             sine(-3) is about -0.14
             sine(-2) is about -0.91
             sine(-1) is about -0.84
