@@ -223,7 +223,7 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
       :type window: rg.RoseWindow
     """
     # -------------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
@@ -246,13 +246,13 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
     center_vertical_x = center_of_rec_x
     center_vertical_y = center_of_rec_y - (rec_width + rec_height) / 2
 
-
     for _ in range(m):
         center_horizontal = rg.Point(center_horizontal_x, center_horizontal_y)
         circle = rg.Circle(center_horizontal, rec_height / 2)
         circle.fill_color = rectangle.fill_color
         circle.attach_to(window)
         center_horizontal_x = center_horizontal_x - rec_height
+
     for _ in range(n):
         center_vertical = rg.Point(center_vertical_x, center_vertical_y)
         circle = rg.Circle(center_vertical, rec_width / 2)
@@ -260,6 +260,7 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
         circle.attach_to(window)
         center_vertical_y = center_vertical_y - rec_width
     window.render()
+
 
 def run_test_draw_lines_from_rectangles():
     """ Tests the   draw_lines_from_rectangles  function. """
@@ -351,6 +352,35 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
     #          ** FIRST DO A CONCRETE EXAMPLE BY HAND! **
     ###########################################################################
     # -------------------------------------------------------------------------
+    rectangle1.attach_to(window)
+    rectangle2.attach_to(window)
+
+    center_of_rec1_x = math.fabs((rectangle1.corner_1.x + rectangle1.corner_2.x)) / 2
+    center_of_rec1_y = math.fabs((rectangle1.corner_1.y + rectangle1.corner_2.y)) / 2
+    center_of_rec2_x = math.fabs((rectangle2.corner_1.x + rectangle2.corner_2.x)) / 2
+    center_of_rec2_y = math.fabs((rectangle2.corner_1.y + rectangle2.corner_2.y)) / 2
+    rec1_width = math.fabs(rectangle1.corner_1.x - rectangle1.corner_2.x)
+    rec1_height = math.fabs(rectangle1.corner_1.y - rectangle1.corner_2.y)
+    count = 0
+    start_x = center_of_rec1_x
+    start_y = center_of_rec1_y
+    end_x = center_of_rec2_x
+    end_y = center_of_rec2_y
+
+    for _ in range(n):
+        if count % 2 == 0:
+            color = rectangle1.outline_color
+        else:
+            color = rectangle2.outline_color
+        line = rg.Line(rg.Point(start_x, start_y), rg.Point(end_x, end_y))
+        line.color = color
+        line.attach_to(window)
+        count = count + 1
+        start_x = start_x - rec1_width / 2
+        start_y = start_y + rec1_height / 2
+        end_x = end_x - rec1_width / 2
+        end_y = end_y + rec1_height / 2
+    window.render()
 
 
 # -----------------------------------------------------------------------------
