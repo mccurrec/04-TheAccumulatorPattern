@@ -9,8 +9,8 @@ Additionally, it emphasizes that you must
 before you can implement a solution to the problem in Python. 
   
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher, Mark Hays,
-         Aaron Wilkin, their colleagues, and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Aaron Wilkin, their colleagues, and Ezrie McCurry.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -51,6 +51,7 @@ def run_test_draw_squares_from_circle():
     circle = rg.Circle(rg.Point(100, 100), 20)
     circle.fill_color = 'green'
     draw_squares_from_circle(7, circle, window1)
+
 
     # Test 2:
     circle = rg.Circle(rg.Point(350, 70), 50)
@@ -111,6 +112,16 @@ def draw_squares_from_circle(n, circle, window):
     #          ** FIRST DO A CONCRETE EXAMPLE BY HAND! **
     ###########################################################################
     # -------------------------------------------------------------------------
+    circle.attach_to(window)
+    x = circle.center.x
+    y = circle.center.y
+    for _ in range(n):
+        point = rg.Point(x, y)
+        square = rg.Square(point, circle.radius*2)
+        square.attach_to(window)
+        x = square.center.x + circle.radius
+        y = square.center.y + circle.radius
+    window.render()
 
 
 def run_test_draw_circles_from_rectangle():
